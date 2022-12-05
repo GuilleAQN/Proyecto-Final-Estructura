@@ -7,4 +7,4 @@ Proyecto de Gestión de Nómina
 - Jose Ignacio Dilone Dechamps 21-038
 - Omar Guillermo Aquino Mena 21-0689
 ***
-Link del Proyecto: 
+Link del Proyecto: https://github.com/GuilleAQN/Proyecto-Final-Estructura
