@@ -41,12 +41,7 @@ public class Prueba implements CálculoDescuentos {
         Prueba test = new Prueba();
         System.out.println((double)Math.round(test.cálculoAFP(salarioBruto) * 100d) / 100);
         System.out.println((double)Math.round(test.cálculoSRS(salarioBruto)* 100d) / 100);
-        System.out.println((double)Math.round(test.cálculoISR(salarioBruto)* 100d) / 100);
-        Empleado e1 = new Empleado("002431","Omar Guillermo","00-1213144-0","Los ALamos");
-        Empleado e2 = new Empleado("002432","Jose Dilone","00-1213144-1","Un lugar");
-        Empleado e3 = new Empleado("002433","Leandro Gonzalez","00-1213144-2","Rep. de Colombia");
-        VolanteDePago v1 = new VolanteDePago();
-        System.out.println(e1);
+        System.out.println((double)Math.round(test.cálculoISR(salarioBruto)* 100d) / 100);;
     }
 
 }
