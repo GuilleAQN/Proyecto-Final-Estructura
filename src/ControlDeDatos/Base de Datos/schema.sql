@@ -7,7 +7,8 @@ CREATE TABLE "empleados" (
 	"apellido"	VARCHAR(40) NOT NULL,
 	"cedula"	VARCHAR(11) NOT NULL,
 	"direccion"	id_empleadoVARCHAR(100),
-	"estado"	INT NOT NULL,
+	"rol"           VARCHAR (0, 15),
+	"estado"	INT,
 	"salario_bruto"	INT NOT NULL,
 	"date_time"	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY("id_empleado")
