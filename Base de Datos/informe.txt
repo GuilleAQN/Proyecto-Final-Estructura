@@ -1,9 +1,0 @@
-******** Información sobre la carpeta database ********
-
-En esta carpeta se encuentra el la base de datos para SQLITE3,
-esta se llama "nomina.db", luego tenemos el schema.sql que
-contiene el schema de las tres tablas realizadas, y por último
-el schema_datos.sql que posee datos para las tablas que se utilizaran
-para ejemplificar el funcionamiento del sistema, estos dos últimos
-archivos solo tienen la función de poseer un respaldo de schemas contra
-cualquier percance encontrado en el proceso.
