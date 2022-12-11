@@ -13,37 +13,39 @@ import java.util.Scanner;
 
 
 public class main {
-    Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         try {
             Conexion cc = new Conexion();
             Connection cn = cc.conectar();
 
             PreparedStatement ps = cn.prepareStatement("INSERT INTO empleados VALUES(?,?,?,?,?,?,?,?);");
             
-            String id_empleado = sc.next;
+            String id_empleado = sc.next();
             ps.setString(1,id_empleado);
 
-            String nombre = sc.next;
+            String nombre = sc.next();
             ps.setString(2,nombre);
 
-            String apellido = sc.next;
+            String apellido = sc.next();
             ps.setString(3,apellido);
 
-            String cedula = sc.next;
+            String cedula = sc.next();
             ps.setString(4,cedula);
 
-            String direccion = sc.next;
+            String direccion = sc.next();
             ps.setString(5,direccion);
 
-            String rol = sc.next;
+            String rol = sc.next();
             ps.setString(6,rol);
 
-            int estado = sc.next;
+            int estado = sc.nextInt();
             ps.setInt(7,estado);
 
-            Double Salario_bruto = sc.nextDouble;
+            Double Salario_bruto = sc.nextDouble();
             ps.setDouble(8, Salario_bruto);
+
+            ps.executeUpdate();
 
         }catch (SQLException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE,null,ex);
