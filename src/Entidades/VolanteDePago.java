@@ -5,54 +5,6 @@ import Interfaces.EnumerarEmpleados;
 
 public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
 
-    private String id;
-    private String titulo;
-    private double salarioBruto;
-    private Empleado empleado;
-
-    public VolanteDePago() {
-
-    }
-
-    public VolanteDePago(String id, String titulo, double salarioBruto, Empleado empleado) {
-        this.id = id;
-        this.titulo = titulo;
-        this.salarioBruto = salarioBruto;
-        this.empleado = empleado;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public double getSalarioBruto() {
-        return salarioBruto;
-    }
-
-    public void setSalarioBruto(double salarioBruto) {
-        this.salarioBruto = salarioBruto;
-    }
-
-    public Empleado getEmpleado() {
-        return empleado;
-    }
-
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
-    }
-
     @Override
     public double cálculoISR(double salarioBruto) {
         double salarioDescuento = salarioBruto - cálculoAFP(salarioBruto) - cálculoSRS(salarioBruto);
