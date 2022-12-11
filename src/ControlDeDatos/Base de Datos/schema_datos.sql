@@ -29,3 +29,4 @@ INSERT INTO "main"."usuarios" ("nombre", "contraseña") VALUES ('admin', 'root')
 
 INSERT INTO "main"."volante" ("titulo", "descripcion", "codigo_empleado") VALUES ('titulo', 'descripcion', '1010');
 INSERT INTO "main"."volante" ("titulo", "descripcion", "codigo_empleado") VALUES ('titulo 2', 'descripcion 2', '10107');
+
