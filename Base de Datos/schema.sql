@@ -1,5 +1,6 @@
 /*Schema de la base de datos por tabla */
 
+
 /* Tabla de empleados */
 CREATE TABLE "empleados" (
 	"id_empleado"	INTEGER NOT NULL UNIQUE,
