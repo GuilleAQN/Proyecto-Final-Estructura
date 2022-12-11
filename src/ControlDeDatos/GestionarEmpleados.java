@@ -5,12 +5,9 @@ import java.sql.*;
 public class GestionarEmpleados {
 
     /*
-    Registrar Clases.Empleado
-    Modificar Clases.Empleado
-    Mostrar Clases.Empleado
-    Generar Volante
-    Editar Volante
-    Mostrar Volante
+    Registrar Empleado
+    Modificar Empleado
+    Mostrar Empleado
     Finalizar Programa
      */
 
