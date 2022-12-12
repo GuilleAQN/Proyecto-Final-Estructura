@@ -7,12 +7,14 @@ package ControlDeDatos;
 
 // Interfaces importadas
 import java.sql.*;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Conexion {
 
     // Campos de la Clase
     Connection conectar = null;
-
 
     /**
      * Metodo que hace la conexión a la Base de Datos.
@@ -21,7 +23,8 @@ public class Conexion {
         
         try {// Prueba la conexión a la Base de Datos
             Class.forName("org.sqlite.JDBC");
-            conectar = DriverManager.getConnection("jdbc:sqlite:Nomina.db");
+            String jdbcURL = "jdbc:sqlite:/C:\\sqlite\\nomina.db";
+            conectar = DriverManager.getConnection(jdbcURL);
         } 
         catch (Exception e) { // En caso, de que no la Base de Datos, devuelve un mensaje
             System.out.println(e.getMessage());
@@ -32,4 +35,5 @@ public class Conexion {
     /**
      * @return Devuelve la conexión la Base de Datos
      */
+
 }//Cierre de la clase
