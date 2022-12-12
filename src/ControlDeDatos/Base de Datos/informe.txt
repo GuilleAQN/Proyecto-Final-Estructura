@@ -1,3 +1,4 @@
+@author: Jose Ignacio Dilone
 ******** Información sobre la carpeta database ********
 
 En esta carpeta se encuentra el la base de datos para SQLITE3,

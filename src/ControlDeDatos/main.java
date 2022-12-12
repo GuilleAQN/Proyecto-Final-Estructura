@@ -42,7 +42,7 @@ public class main {
             int estado = sc.nextInt();
             ps.setInt(7,estado);
 
-            Double Salario_bruto = sc.nextDouble();
+            double Salario_bruto = sc.nextDouble();
             ps.setDouble(8, Salario_bruto); 
 
             ps.executeUpdate();//se ejecuta la actualizacion en la base de datos

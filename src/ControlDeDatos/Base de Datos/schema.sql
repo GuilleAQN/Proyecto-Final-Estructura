@@ -1,4 +1,5 @@
 /*Schema de la base de datos por tabla */
+/*@author: Jose Ignacio Dilone*/
 
 /* Tabla de empleados */
 CREATE TABLE "empleados" (
