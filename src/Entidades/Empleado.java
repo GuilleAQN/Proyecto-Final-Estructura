@@ -29,8 +29,6 @@ public class Empleado {
     public int ingresarEmpleado(int codigo, String nombre, String apellido, String cedula, String direccion, double salarioBruto) throws SQLException {
 
         int resultado = 0;
-        conexion.conectar();
-
         String stmt = "INSERT INTO empleados (codigo_empleado ,nombre ,apellido ,cedula ,direccion ,rol ,salario_bruto) VALUES(?,?,?,?,?,?,?,?);";
 
         try {
@@ -47,7 +45,6 @@ public class Empleado {
 
             ps.close();
 
-
         } catch (SQLException ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
 
@@ -56,7 +53,6 @@ public class Empleado {
                 if (conexion != null) {
                     conexion.conectar().close();
                 }
-
             } catch (SQLException ex) {
                 Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
             }

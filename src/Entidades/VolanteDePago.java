@@ -9,6 +9,11 @@ package Entidades;
 // Interfaces importadas
 import Interfaces.CálculoDescuentos;
 import Interfaces.EnumerarEmpleados;
+import ControlDeDatos.Conexion;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
 
@@ -71,12 +76,25 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
      */
     @Override
     public int contarEmpleados() {
-        // Usar select count(*)
+        Conexion conexion = new Conexion();
+        try {
+            String stmt = "SELECT COUNT(*) AS cantidad FROM empleados";
+            PreparedStatement ps = conexion.conectar().prepareStatement(stmt);
+            ResultSet rs = ps.executeQuery();
+            return rs.getInt("cantidad");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        // Usar select cantidad(*)
         //  from medicamentos; para contar la cantidad de empleados.
-        return 0;
     }
     /**
      * @return Devuelve el valor de la cantidad de empleado registrados
      */
+
+    public static void main(String[] args) {
+        VolanteDePago volanteDePago = new VolanteDePago();
+        System.out.println(volanteDePago.contarEmpleados());
+    }
 
 }// Cierre de Clase
