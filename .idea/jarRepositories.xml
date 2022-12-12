@@ -16,5 +16,10 @@
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="29d4f08e-81de-4cf5-9c20-204e51c7ea5a" />
+      <option name="name" value="29d4f08e-81de-4cf5-9c20-204e51c7ea5a" />
+      <option name="url" value="https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc" />
+    </remote-repository>
   </component>
 </project>
