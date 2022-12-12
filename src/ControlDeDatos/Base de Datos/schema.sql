@@ -10,7 +10,7 @@ CREATE TABLE "empleados" (
 	"direccion"	id_empleadoVARCHAR(100),
 	"rol"           VARCHAR (0, 15),
 	"estado"	INT,
-	"salario_bruto"	INT NOT NULL,
+	"salario_bruto"	BIGDECIMAL NOT NULL,
 	"date_time"	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY("id_empleado")
 );
@@ -34,3 +34,4 @@ CREATE TABLE "volante" (
 	FOREIGN KEY("codigo_empleado") REFERENCES "empleados"("id_empleado"),
 	PRIMARY KEY("id_volante" AUTOINCREMENT)
 );
+
