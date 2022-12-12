@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 /**
  * SubClase de la Clase "Empleado", con los métodos de la superclase dirigidos para los datos de tipo Rol: Tiempo Completo.
- * @author: Omar Aquino
+ * @author: Omar Aquino y Leandro Gonzales
  * @since: 04/12/2022
  */
 
@@ -15,26 +15,19 @@ public class EmpleadoTiempoCompleto extends Empleado {
 
     public int ingresarEmpleado(int codigo, String nombre, String apellido, String cedula, String direccion, int estado, double salarioBruto) throws SQLException {
 
+        super.ingresarEmpleado(codigo,nombre,apellido,cedula,direccion,salarioBruto);
         int resultado = 0;
-        conexion.conectar();
 
-        String stmt = "INSERT INTO empleados (codigo_empleado ,nombre ,apellido ,cedula ,direccion ,rol ,estado ,salario_bruto) VALUES(?,?,?,?,?,?,?,?);";
+        String stmt = "INSERT INTO empleados (rol ,estado) VALUES(?,?);";
 
         try {
             PreparedStatement ps = conexion.conectar().prepareStatement(stmt);
-            ps.setInt(1,codigo);
-            ps.setString(2,nombre);
-            ps.setString(3,apellido);
-            ps.setString(4,cedula);
-            ps.setString(5,direccion);
             ps.setString(6,"Tiempo Completo");
             ps.setInt(7,estado);
-            ps.setDouble(8, salarioBruto);
 
-            ps.executeUpdate();//se ejecuta la actualizacion en la base de datos
+            ps.executeUpdate();//Se ejecuta la actualizacion en la base de datos
 
             ps.close();
-
 
         } catch (SQLException ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
