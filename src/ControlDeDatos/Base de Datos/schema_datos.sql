@@ -1,4 +1,5 @@
 /* schema datos Tabla de empleados */
+/*@author: jose Ignacio Dilone*/
 
 INSERT INTO "main"."empleados" ("id_empleado", "nombre", "apellido", "cedula", "direccion", "rol", "estado", "salario_bruto") VALUES ('1010', 'jose', 'dilone', '00144545614', 'caobas segunda', 'Tiempo Completo', '1', '40000');
 INSERT INTO "main"."empleados" ("id_empleado", "nombre", "apellido", "cedula", "direccion", "rol", "estado", "salario_bruto") VALUES ('10101', 'roberto', 'pastoriza', '00124568786', 'Gazcue', 'Tiempo Completo', '1', '12000');
