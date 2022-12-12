@@ -34,3 +34,4 @@ CREATE TABLE "volante" (
 	FOREIGN KEY("codigo_empleado") REFERENCES "empleados"("id_empleado"),
 	PRIMARY KEY("id_volante" AUTOINCREMENT)
 );
+
