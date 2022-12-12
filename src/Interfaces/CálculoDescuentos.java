@@ -14,15 +14,15 @@ public interface CálculoDescuentos {
     /* Variable "ArrayList" que posee los valores de porcentaje de descuento del Impuesto Sobre la Renta,segun
     el salario anual con descuentos aplicado.
     */
-    ArrayList<Double> porcentajeISR = new ArrayList<Double>() {{
+    ArrayList<Double> PORCENTAJE_ISR = new ArrayList<Double>() {{
     add(0.15);
     add(0.20);
     add(0.25);
     }};
     // Variable "double" que posee el valor del descuento del Servicio Nacional de Salud.
-    double porcentajeSRS = 0.0304;
+    double PORCENTAJE_SRS = 0.0304;
     // Variable "double" que posee el valor del descuento de la Asociación de Fonde de Pensiones.
-    double porcentajeAFP = 0.0287;
+    double PORCENTAJE_AFP = 0.0287;
 
     double cálculoISR(double salarioBruto);
     double cálculoAFP(double salarioBruto);
