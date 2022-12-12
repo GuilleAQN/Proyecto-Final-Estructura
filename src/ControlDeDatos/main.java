@@ -51,8 +51,6 @@ public class main {
         catch (SQLException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE,null,ex);// se captura este posible error en un catch
         }
-        catch (SQLite_CONSTRAINT_PRIMARYKEY ex) {
-            System.out.println("Ya existe en la base de datos"); //evita agregar empleados con el mismo id
-        }
+        
     }// Cierre de Metodo
 }//Cierre de Clase
