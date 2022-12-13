@@ -1,4 +1,7 @@
 package Interfaces;
+
+import java.sql.SQLException;
+
 /**
  * Interface aplicada a la Clase "VolanteDePago", que posee el metodo para contar los empleados.
  * @author: Omar Aquino
@@ -7,5 +10,5 @@ package Interfaces;
 
 public interface EnumerarEmpleados {
 
-    int contarEmpleados();
+    int contarEmpleados() throws SQLException;
 }// Cierre de la Interface

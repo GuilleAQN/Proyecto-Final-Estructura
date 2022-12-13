@@ -22,25 +22,26 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
 
     /**
      * Metodo que genera un Volante relacionado con el codigo un empleado.
-     * @param titulo Titulo que tendra el volante
-     * @param descripcion Cuerpo del Volante, compuesto por detalles, sueldo bruto y sus descuentos, ademas del del sueldo neto
+     *
+     * @param titulo          Titulo que tendra el volante
+     * @param descripcion     Cuerpo del Volante, compuesto por detalles, sueldo bruto y sus descuentos, ademas del del sueldo neto
      * @param codigo_empleado Código del empleado con el se relaciona
      */
-    public void generarVolante(String titulo, String descripcion, int codigo_empleado){
+    public void generarVolante(String titulo, String descripcion, int codigo_empleado) {
         String stmt = "INSERT INTO volante (titulo, descripcion, codigo_empleado) VALUES (?, ?, ?)";
 
         try {
             PreparedStatement ps = conexion.conectar().prepareStatement(stmt);
-            ps.setString(1,titulo);
-            ps.setString(2,descripcion);
-            ps.setInt(3,codigo_empleado);
+            ps.setString(1, titulo);
+            ps.setString(2, descripcion);
+            ps.setInt(3, codigo_empleado);
 
             ps.executeUpdate();//se ejecuta la actualizacion en la base de datos
 
             ps.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
             try {
@@ -48,32 +49,33 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
                     conexion.conectar().close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
+                Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     } // Cierre de metodo
 
     /**
      * Metodo que edita un Volante relacionado con el codigo un empleado.
-     * @param titulo Titulo que tendra el volante
+     *
+     * @param titulo      Titulo que tendra el volante
      * @param descripcion Cuerpo del Volante, compuesto por detalles, sueldo bruto y sus descuentos, ademas del del sueldo neto
-     * @param id_volante Código del volante del empleado a editar
+     * @param id_volante  Código del volante del empleado a editar
      */
-    public void editarVolante(String titulo, String descripcion, int id_volante){
+    public void editarVolante(String titulo, String descripcion, int id_volante) {
         String stmt = "UPDATE volante SET titulo = ?, descripcion = ? WHERE id_volante = ?;";
 
         try {
             PreparedStatement ps = conexion.conectar().prepareStatement(stmt);
-            ps.setString(1,titulo);
-            ps.setString(2,descripcion);
-            ps.setInt(3,id_volante);
+            ps.setString(1, titulo);
+            ps.setString(2, descripcion);
+            ps.setInt(3, id_volante);
 
             ps.executeUpdate();//se ejecuta la actualizacion en la base de datos
 
             ps.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
             try {
@@ -81,17 +83,21 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
                     conexion.conectar().close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
+                Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }// Cierre de metodo
 
     /**
      * Metodo que enseña los datos de un Volante relacionado con el codigo un empleado.
+     *
      * @param id_volante Código del volante del empleado a ver
      */
-    public String mostrarVolante(int id_volante){
+    public String mostrarVolante(int id_volante) {
         String resultado = "";
+        double descuentoAFP = 0;
+        double descuentoSRS = 0;
+        double descuentoISR = 0;
         String stmt = "SELECT * FROM volante WHERE id_volante = " + id_volante;
 
         try {
@@ -99,27 +105,61 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
 
             ResultSet rs = ps.executeQuery();
 
+            int codigo_empleado = rs.getInt(4);
+
             resultado = "Nº de Volante: " + rs.getString(1) + "\nTitulo: " + rs.getString(2)
-            + "\nDescripción: " + rs.getString(3) + "\nCódigo del Empleado: " + rs.getString(4)
-            + "\nFecha de Pago: " + rs.getString(5);
+                    + "\nDescripción: " + rs.getString(3) + "\nCódigo del Empleado: " + rs.getInt(4)
+                    + codigo_empleado + "\nFecha de Pago: " + rs.getString(5);
+
+            rs.close();
+            ps.close();
+
+            double salario_bruto = obtenerSalario(codigo_empleado);
+
+            descuentoAFP = cálculoAFP(salario_bruto);
+            descuentoSRS = cálculoSRS(salario_bruto);
+            descuentoISR = cálculoISR(salario_bruto);
+            if(descuentoSRS == 0){
+                descuentoISR = Double.parseDouble("No aplica");
+            }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
+
             try {
                 if (conexion != null) {
+
                     conexion.conectar().close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
+                Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return resultado;
+        return resultado + "\nDescuentos\nAFP: " + descuentoAFP + "\nSRS: " + descuentoSRS + "\nISR: " + descuentoISR;
     }// Cierre de metodo
+
     /**
      * @return Devuelve los datos del Volante seleccionado
      */
+
+    public double obtenerSalario(int codigo_empleado) throws SQLException {
+
+        String stmt = "SELECT salario_bruto FROM empleados WHERE codigo_empleado = " + codigo_empleado;
+        try {
+            PreparedStatement ps = conexion.conectar().prepareStatement(stmt);
+            ResultSet rs = ps.executeQuery();
+
+            return rs.getDouble("salario_bruto");
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            conexion.conectar().close();
+        }
+    }
+
 
     /**
      * Metodo que calcula el descuento del ISR.
@@ -179,7 +219,7 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
      * Metodo que calcula la cantidad de Empleados.
      */
     @Override
-    public int contarEmpleados() {
+    public int contarEmpleados() throws SQLException {
         try {
             String stmt = "SELECT COUNT(*) AS cantidad FROM empleados";
             PreparedStatement ps = conexion.conectar().prepareStatement(stmt);
@@ -187,6 +227,12 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
             return rs.getInt("cantidad");
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            try {
+                conexion.conectar().close();
+            }catch (SQLException e){
+
+            }
         }
     }// Cierre de metodo
     /**
@@ -196,10 +242,10 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
 
     public static void main(String[] args) { // Prueba
         VolanteDePago volanteDePago = new VolanteDePago();
-        volanteDePago.generarVolante("Pago","Saco de Dinero",10103);
-
+//        volanteDePago.generarVolante("Pago","Saco de Dinero",10103);
+//        System.out.println(volanteDePago.obtenerSalario(10103));
 //        volanteDePago.editarVolante("Mi Pago","Dinero pero feo!",11);
-//        System.out.println(volanteDePago.mostrarVolante(1));
+        System.out.println(volanteDePago.mostrarVolante(1));
     }
 
 }// Cierre de Clase
