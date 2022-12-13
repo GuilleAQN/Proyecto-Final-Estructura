@@ -9,7 +9,10 @@ package Entidades;
 
 import ControlDeDatos.Conexion;
 
+import java.beans.Statement;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -131,6 +134,37 @@ public class Empleado {
             }
         }
 
+    }
+
+    public static void showAll(){
+        Conexion conexion = new Conexion();
+        Connection cn = conexion.conectar();
+        try {
+
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM empleados");
+
+            while(rs.next()){
+                System.out.println(rs.getString(2) + " " +rs.getString(3));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
+
+        } finally {
+
+            try {
+
+                if (conexion != null) {
+                    conexion.conectar().close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
+
+            }
+        }
+        
     }
 
 
