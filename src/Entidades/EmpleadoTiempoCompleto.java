@@ -1,15 +1,17 @@
 package Entidades;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  * SubClase de la Clase "Empleado", con los métodos de la superclase dirigidos para los datos de tipo Rol: Tiempo Completo.
  * @author: Omar Aquino y Leandro Gonzalez
  * @since: 04/12/2022
  */
+
+// Interfaces importadas
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class EmpleadoTiempoCompleto extends Empleado {
 
@@ -36,7 +38,6 @@ public class EmpleadoTiempoCompleto extends Empleado {
                 if (conexion != null) {
                     conexion.conectar().close();
                 }
-
             } catch (SQLException ex) {
                 Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
             }
@@ -73,7 +74,7 @@ public class EmpleadoTiempoCompleto extends Empleado {
                 Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
             }
         }
-    }
+    } // Cierre de metodo
 
 
     public static void main(String[] args) throws SQLException { // Prueba

@@ -7,10 +7,9 @@ package Entidades;
  * @since: 04/12/2022
  */
 
+// Interfaces importadas
 import ControlDeDatos.Conexion;
-
 import java.sql.Statement;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -86,7 +85,7 @@ public class Empleado {
                 Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
             }
         }
-    }
+    }// Cierre de metodo
 
     public void editarEmpleado(int codigo, String nombre, String apellido, String cedula, String direccion, String rol, double salarioBruto) throws SQLException {
         String stmt = "UPDATE empleados SET nombre = ?, apellido = ?, cedula = ?, direccion = ?, rol = ?, estado = ?,salario_bruto = ? WHERE codigo_empleado = ?;"; //ps prepared statement, sentencia de base de datos en el que se edita de la tabla empleados, el registro con el codigo introducido
@@ -125,7 +124,7 @@ public class Empleado {
                 Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
             }
         }
-    }
+    }// Cierre de metodo
 
     public void showAll(){
         try {
@@ -141,7 +140,6 @@ public class Empleado {
         } finally {
 
             try {
-
                 if (conexion != null) {
                     conexion.conectar().close();
                 }
@@ -149,8 +147,7 @@ public class Empleado {
                 Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
             }
         }
-        
-    }
+    }// Cierre de metodo
 
 
     public static void main(String[] args) throws SQLException { // Prueba

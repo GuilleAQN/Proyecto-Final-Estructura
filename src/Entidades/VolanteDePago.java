@@ -10,7 +10,6 @@ package Entidades;
 import Interfaces.CálculoDescuentos;
 import Interfaces.EnumerarEmpleados;
 import ControlDeDatos.Conexion;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -52,7 +51,7 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
                 Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
             }
         }
-    }
+    } // Cierre de metodo
 
     /**
      * Metodo que edita un Volante relacionado con el codigo un empleado.
@@ -85,7 +84,7 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
                 Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
             }
         }
-    }
+    }// Cierre de metodo
 
     /**
      * Metodo que enseña los datos de un Volante relacionado con el codigo un empleado.
@@ -117,7 +116,7 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
             }
         }
         return resultado;
-    }
+    }// Cierre de metodo
     /**
      * @return Devuelve los datos del Volante seleccionado
      */
@@ -189,7 +188,7 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
+    }// Cierre de metodo
     /**
      * @return Devuelve el valor de la cantidad de empleado registrados
      */

@@ -1,9 +1,6 @@
-import Entidades.VolanteDePago;
 import Interfaces.CálculoDescuentos;
-import Entidades.Empleado;
 
 public class Prueba implements CálculoDescuentos {
-
 
 
     @Override
@@ -12,15 +9,15 @@ public class Prueba implements CálculoDescuentos {
         double salarioDescuentoAnual = salarioDescuento * 12;
         if(salarioDescuentoAnual >= 416220.01 && salarioDescuentoAnual <= 624329.00){
             double excedente = salarioDescuentoAnual - 416220.01;
-            double excendenteTotal = excedente * porcentajeISR.get(0);
+            double excendenteTotal = excedente * PORCENTAJE_ISR.get(0);
             return excendenteTotal / 12;
         } if (salarioDescuentoAnual >= 624329.01 && salarioDescuentoAnual <= 867123.00) {
             double excedente = salarioDescuentoAnual - 624329.01;
-            double excendenteTotal = (excedente * porcentajeISR.get(1)) + 31216.00;
+            double excendenteTotal = (excedente * PORCENTAJE_ISR.get(1)) + 31216.00;
             return excendenteTotal / 12;
         }if (salarioDescuentoAnual >= 867123.01){
             double excedente = salarioDescuentoAnual - 867123.01;
-            double excendenteTotal = (excedente * porcentajeISR.get(2)) + 79776.00;
+            double excendenteTotal = (excedente * PORCENTAJE_ISR.get(2)) + 79776.00;
             return excendenteTotal / 12;
         }
         return 0;
@@ -28,12 +25,12 @@ public class Prueba implements CálculoDescuentos {
 
     @Override
     public double cálculoAFP(double salarioBruto) {
-        return salarioBruto * porcentajeAFP;
+        return salarioBruto * PORCENTAJE_AFP;
     }
 
     @Override
     public double cálculoSRS(double salarioBruto) {
-        return salarioBruto * porcentajeSRS;
+        return salarioBruto * PORCENTAJE_SRS;
     }
 
     public static void main(String[] args) {
