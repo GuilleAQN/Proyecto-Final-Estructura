@@ -60,6 +60,11 @@ public class Empleado {
         }
     }// Cierre de metodo
 
+
+    /**
+     * Metodo que eliminar un empleado a la Base de Datos.
+     * @param codigo El parámetro es el código único del Empleado
+     */
     public void eliminarEmpleado(int codigo) {
         String stmt = "DELETE FROM empleados WHERE codigo = ?;"; //ps prepared statement, sentencia de base de datos en el que se elimina de la tabla empleados, el registro con el codigo introducido
 
@@ -87,6 +92,17 @@ public class Empleado {
         }
     }// Cierre de metodo
 
+
+    /**
+     * Metodo que edita los datos de un empleado a la Base de Datos.
+     * @param codigo El parámetro es el código único del Empleado
+     * @param nombre El parámetro es el nombre/s del Empleado
+     * @param apellido El parámetro es el apellido/s del Empleado
+     * @param cedula El parámetro es la cédula del Empleado
+     * @param direccion El parámetro es la dirección del Empleado
+     * @param rol El parámetro es el rol que desempeña el empleado que puede ser: Medio Tiempo o Tiempo Completo
+     * @param salarioBruto El parámetro es el salario bruto del Empleado
+     */
     public void editarEmpleado(int codigo, String nombre, String apellido, String cedula, String direccion, String rol, double salarioBruto) throws SQLException {
         String stmt = "UPDATE empleados SET nombre = ?, apellido = ?, cedula = ?, direccion = ?, rol = ?, estado = ?,salario_bruto = ? WHERE codigo_empleado = ?;"; //ps prepared statement, sentencia de base de datos en el que se edita de la tabla empleados, el registro con el codigo introducido
         
@@ -148,11 +164,4 @@ public class Empleado {
             }
         }
     }// Cierre de metodo
-
-
-    public static void main(String[] args) throws SQLException { // Prueba
-        Empleado empleado = new Empleado();
-//        empleado.ingresarEmpleado(12121,"Juan","Carrion","000000","Un lugar",17000);
-        empleado.editarEmpleado(12123,"Juan","Disla","000000","Un lugar","Medio Tiempo",17000);
-    }
 }// Cierre de Clase

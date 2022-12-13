@@ -15,6 +15,15 @@ import java.util.logging.Logger;
 
 public class EmpleadoTiempoCompleto extends Empleado {
 
+    /**
+     * Metodo que ingresa los datos de un empleado nuevo de tipo Tiempo Completo a la Base de Datos.
+     * @param codigo El parámetro es el código único del Empleado
+     * @param nombre El parámetro es el nombre/s del Empleado
+     * @param apellido El parámetro es el apellido/s del Empleado
+     * @param cedula El parámetro es la cédula del Empleado
+     * @param direccion El parámetro es la dirección del Empleado
+     * @param salarioBruto El parámetro es el salario bruto del Empleado
+     */
     public void ingresarEmpleadoTiempoCompleto(int codigo, String nombre, String apellido, String cedula, String direccion, int estado, double salarioBruto) throws SQLException {
 
         super.ingresarEmpleado(codigo,nombre,apellido,cedula,direccion,salarioBruto);
@@ -44,6 +53,15 @@ public class EmpleadoTiempoCompleto extends Empleado {
         }
     }// Cierre de metodo
 
+    /**
+     * Metodo que edita los datos de un empleado de tipo Tiempo Completo a la Base de Datos.
+     * @param codigo El parámetro es el código único del Empleado
+     * @param nombre El parámetro es el nombre/s del Empleado
+     * @param apellido El parámetro es el apellido/s del Empleado
+     * @param cedula El parámetro es la cédula del Empleado
+     * @param direccion El parámetro es la dirección del Empleado
+     * @param salarioBruto El parámetro es el salario bruto del Empleado
+     */
     public void editarEmpleadoTiempoCompleto(int codigo, String nombre, String apellido, String cedula, String direccion, int estado, double salarioBruto) throws SQLException {
         super.editarEmpleado(codigo,nombre,apellido,cedula,direccion,"Tiempo Completo",salarioBruto);
 
@@ -75,12 +93,4 @@ public class EmpleadoTiempoCompleto extends Empleado {
             }
         }
     } // Cierre de metodo
-
-
-    public static void main(String[] args) throws SQLException { // Prueba
-        EmpleadoTiempoCompleto empleado = new EmpleadoTiempoCompleto();
-//        empleado.ingresarEmpleado(12123,"Juan","Carrion","000000","Un lugar",15000);
-        empleado.editarEmpleadoTiempoCompleto(12123,"Juan","Carrion","00","Un lu",1,10.00);
-    }
-
 }// Cierre de Clase
