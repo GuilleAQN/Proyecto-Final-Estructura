@@ -3,7 +3,7 @@ package Entidades;
 /**
  * Clase con los métodos para manipular la tabla "Empleados" capaz de Introducir y Actualizar registros, además
  * de mostrar todos lo registros en la tabla.
- * @author: Omar Aquino y Leandro Gonzales
+ * @author: Omar Aquino y Leandro Gonzalez
  * @since: 04/12/2022
  */
 
@@ -108,7 +108,7 @@ public class Empleado {
             ps.setString(5,direccion);
             ps.setString(6,"Medio Tiempo");
             ps.setDouble(8, salarioBruto);
-            
+
             ps.executeUpdate();//se ejecuta la actualizacion en la base de datos
             ps.close();
 
