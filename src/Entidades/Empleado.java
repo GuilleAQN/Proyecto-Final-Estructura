@@ -58,7 +58,42 @@ public class Empleado {
             }
         }
         return resultado;
+
+        
     }// Cierre de metodo
+
+    public static void eliminarEmpleado(int codigo) {
+        Conexion conexion = new Conexion();
+
+        String stmt = "DELETE FROM empleados WHERE codigo = ?;"; //ps prepared statement, sentencia de base de datos en el que se elimina de la tabla empleados, el registro con el codigo introducido
+        try {
+
+            PreparedStatement ps = conexion.conectar().prepareStatement(stmt);
+            ps.setInt(1, codigo);
+
+            ps.executeUpdate();//se ejecuta la actualizacion en la base de datos
+            ps.close();
+
+        } catch(SQLException ex) {
+
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
+
+        } finally {
+
+            try {
+
+                if (conexion != null) {
+                    conexion.conectar().close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
+
+            }
+        }
+    }
+
 
     public static void main(String[] args) throws SQLException { // Prueba
         Empleado empleado = new Empleado();
