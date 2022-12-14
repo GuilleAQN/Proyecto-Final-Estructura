@@ -335,7 +335,7 @@ public class Menu {
                     mostrarVolante();
                     break;
                 case 8:
-                    System.out.println("Gracias por usar el sistema - SALIENDO");
+                    System.out.print("Gracias por usar el sistema - SALIENDO");
                     Thread.sleep(1000);
                     System.out.print(".");
                     Thread.sleep(1000);
@@ -345,7 +345,7 @@ public class Menu {
                     Thread.sleep(1000);
                     break;
                 default:
-                    System.out.println("Favor seleccionar una de las opciones correctas");
+                    System.out.println("\nFavor seleccionar una de las opciones correctas");
                     break;
             }
         }
