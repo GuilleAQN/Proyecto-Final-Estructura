@@ -40,7 +40,7 @@ public class EmpleadoTiempoCompleto extends Empleado {
             ps.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
+            System.err.println("Favor introducir credenciales correctamentes");
 
         } finally {
             try {
@@ -78,13 +78,11 @@ public class EmpleadoTiempoCompleto extends Empleado {
             ps.close();
 
         } catch(SQLException ex) {
-
-            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
+            System.err.println("Favor introducir credenciales correctamentes");
 
         } finally {
 
             try {
-
                 if (conexion != null) {
                     conexion.conectar().close();
                 }

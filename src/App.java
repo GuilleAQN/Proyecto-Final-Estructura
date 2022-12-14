@@ -1,10 +1,11 @@
-import Interfaz.Menu;
+import Interfaz.InicioDeSesion;
 
 import java.io.IOException;
 import java.sql.SQLException;
+
 public class App {
     public static void main(String[] args) throws InterruptedException, SQLException, IOException {
-        Menu menu = new Menu();
-        menu.menuPrincipal();
+        InicioDeSesion inicioDeSesion = new InicioDeSesion();
+        inicioDeSesion.inicioDeSesion();
     }
 }

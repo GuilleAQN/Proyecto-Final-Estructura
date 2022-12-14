@@ -20,17 +20,15 @@ public class Conexion {
         
         try {// Prueba la conexión a la Base de Datos
             Class.forName("org.sqlite.JDBC");
-            String jdbcURL = "jdbc:sqlite:/C:\\sqlite\\nomina.db";
+            String jdbcURL = "jdbc:sqlite:nomina.db";
             conectar = DriverManager.getConnection(jdbcURL);
         } 
         catch (Exception e) { // En caso, de que no la Base de Datos, devuelve un mensaje
             System.out.println(e.getMessage());
         }
-        
         return conectar;
     }
     /**
      * @return Devuelve la conexión la Base de Datos
      */
-
 }//Cierre de la clase

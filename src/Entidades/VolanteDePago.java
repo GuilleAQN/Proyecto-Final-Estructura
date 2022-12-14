@@ -41,7 +41,7 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
             ps.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Datos mal introducidos, favor intentar de nuevo");
 
         } finally {
             try {
@@ -75,8 +75,7 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
             ps.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
-
+            System.err.println("No existe un volante con este ID");
         } finally {
             try {
                 if (conexion != null) {
@@ -90,7 +89,6 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
 
     /**
      * Metodo que enseña los datos de un Volante relacionado con el codigo un empleado.
-     *
      * @param id_volante Código del volante del empleado a ver
      */
     public String mostrarVolante(int id_volante) {
@@ -99,6 +97,7 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
         double descuentoAFP = 0;
         double descuentoSRS = 0;
         double descuentoISR = 0;
+        double salarioNeto = 0;
         String stmt = "SELECT * FROM volante WHERE id_volante = " + id_volante;
 
         try {
@@ -109,8 +108,8 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
             int codigo_empleado = rs.getInt(4);
 
             resultado = "Nº de Volante: " + rs.getString(1) + "\nTitulo: " + rs.getString(2)
-                    + "\nDescripción: " + rs.getString(3) + "\nCódigo del Empleado: " +
-                    "\nFecha de Pago: " + rs.getString(5);
+            + "\nDescripción: " + rs.getString(3) + "\nCódigo del Empleado: " + rs.getInt(4)
+            + "\nFecha de Pago: " + rs.getString(5);
 
             rs.close();
             ps.close();
@@ -120,15 +119,15 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
             descuentoAFP = cálculoAFP(salarioBruto);
             descuentoSRS = cálculoSRS(salarioBruto);
             descuentoISR = cálculoISR(salarioBruto);
+            salarioNeto = salarioBruto - descuentoAFP - descuentoSRS - descuentoISR;
             if(descuentoSRS == 0){
                 descuentoISR = Double.parseDouble("No aplica");
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("No existe ningun volante con ese ID");
 
         } finally {
-
             try {
                 if (conexion != null) {
 
@@ -138,13 +137,18 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
                 Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return resultado + "\nSalario: " + salarioBruto + "\nDescuentos\nAFP: " + descuentoAFP + "\nSRS: " + descuentoSRS + "\nISR: " + descuentoISR;
+        return resultado + "\nSalario: RD$" + salarioBruto + "\nDescuentos\nAFP: "
+        + descuentoAFP + "\nSRS: " + descuentoSRS + "\nISR: " + descuentoISR + "\nSalario Neto: RD$"
+        + salarioNeto;
     }// Cierre de metodo
-
     /**
      * @return Devuelve los datos del Volante seleccionado
      */
 
+    /**
+     * Metodo para obtener el salario, con el que se calcularan los descuentos del empleado.
+     * @param codigo_empleado Código del empleado que posee ese salario
+     */
     public double obtenerSalario(int codigo_empleado) throws SQLException {
 
         String stmt = "SELECT salario_bruto FROM empleados WHERE codigo_empleado = " + codigo_empleado;
@@ -159,8 +163,10 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
         } finally {
             conexion.conectar().close();
         }
-    }
-
+    }// Cierre de metodo
+    /**
+    * @return Devuelve el valor del salario del empleado
+    */
 
     /**
      * Metodo que calcula el descuento del ISR.
@@ -225,28 +231,24 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
             String stmt = "SELECT COUNT(*) AS cantidad FROM empleados";
             PreparedStatement ps = conexion.conectar().prepareStatement(stmt);
             ResultSet rs = ps.executeQuery();
-            return rs.getInt("cantidad");
+
+            int cantidadEmpleado = rs.getInt("cantidad");
+
+            ps.close();
+            rs.close();
+
+            return cantidadEmpleado;
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             try {
                 conexion.conectar().close();
             }catch (SQLException e){
-
             }
         }
     }// Cierre de metodo
     /**
      * @return Devuelve el valor de la cantidad de empleado registrados
      */
-
-
-    public static void main(String[] args) { // Prueba
-        VolanteDePago volanteDePago = new VolanteDePago();
-//        volanteDePago.generarVolante("Pago","Saco de Dinero",10103);
-//        System.out.println(volanteDePago.obtenerSalario(10103));
-//        volanteDePago.editarVolante("Mi Pago","Dinero pero feo!",11);
-        System.out.println(volanteDePago.mostrarVolante(1));
-    }
-
 }// Cierre de Clase

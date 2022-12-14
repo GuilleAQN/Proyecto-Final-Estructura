@@ -27,7 +27,7 @@ public class Menu {
         put("1","Introducir Empleado");
         put("2","Eliminar Empleado");
         put("3","Modificar Empleado");
-        put("4","Mostrar Empleado");
+        put("4","Mostrar Empleados");
         put("5","Generar Volante");
         put("6","Editar Volante");
         put("7","Mostrar Volante");
@@ -62,7 +62,7 @@ public class Menu {
         String direccion = scanner.next();
         System.out.println("Introduzca el rol:\n1. Medio Tiempo\n2. Tiempo Completo");
         String rol = scanner.next();
-        if (rol.equals("1")){
+        if (rol.equals("2")){
             System.out.println("Introduzca el estado:\n1.Activo\n2.Inactivo");
             estado = scanner.nextInt();
         }
@@ -70,7 +70,7 @@ public class Menu {
         double salarioBruto = scanner.nextDouble();
         if (rol.equals("1")){
             empleado.ingresarEmpleado(codigo_empleado,nombre,apellido,cedula,direccion,salarioBruto);
-        }else{
+        }if (rol.equals("2")){
             empleadoTiempoCompleto.ingresarEmpleadoTiempoCompleto(codigo_empleado,nombre,apellido,cedula,direccion,estado,salarioBruto);
         }
         System.out.println("Entrada Exitosa!");
@@ -131,20 +131,20 @@ public class Menu {
         } catch (Exception e) {
         }
         int estado = 0;
-        System.out.print("Nuevo Empleado\nIntroduzca el codigo: ");
+        System.out.print("Empleado a Editar\nIntroduzca el codigo del empleado: ");
         int codigo_empleado = scanner.nextInt();
         System.out.print("Introduzca el nuevo nombre: ");
         String nombre = scanner.next();
         System.out.print("Introduzca el nuevo apellido: ");
         String apellido = scanner.next();
-        System.out.print("Introduzca la nueva cedula: ");
+        System.out.print("Introduzca la nueva cédula: ");
         String cedula = scanner.next();
         System.out.print("Introduzca la nuea dirección: ");
         String direccion = scanner.next();
-        System.out.println("Introduzca el nuevo rol:\n1. Medio Tiempo\nTiempo Completo");
+        System.out.println("Introduzca el nuevo rol:\n1. Medio Tiempo\n2. Tiempo Completo");
         String rol = scanner.next();
-        if (rol.equals("1")){
-            System.out.println("Introduzca el nuevo estado:\n1.Activo\n2.Inactivo");
+        if (rol.equals("2")){
+            System.out.println("Introduzca el nuevo estado:\n1. Activo\n2. Inactivo");
             estado = scanner.nextInt();
         }
         double salarioBruto = scanner.nextDouble();
@@ -161,12 +161,12 @@ public class Menu {
         Thread.sleep(1000);
         System.out.println(".");
         Thread.sleep(1000);
-    }
+    }//Cierre de metodo
 
     /**
      * Metodo para mostrar por terminal los datos de un empleado a la Base de Datos.
      */
-    public void mostrarEmpleados() throws InterruptedException{
+    public void mostrarEmpleados() throws InterruptedException, SQLException {
         try {
             System.out.print("Cargando");
             System.out.print(".");
@@ -178,10 +178,11 @@ public class Menu {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         } catch (Exception e) {
         }
+        System.out.println("\nCantidad de Empleados Registrados: " + volanteDePago.contarEmpleados());
         empleado.showAll();
 
         System.out.println("Presiona \"Enter\" para volver: ");
-        String espera = scanner.next();
+        Thread.sleep(5000);
         System.out.print("Volviendo al menu");
         System.out.print(".");
         Thread.sleep(1000);
@@ -216,7 +217,7 @@ public class Menu {
 
         volanteDePago.generarVolante(titulo,descripcion,codigo_empleado);
 
-        System.out.println("Volante generado");
+        System.out.println("\nVolante generado");
         Thread.sleep(1500);
         System.out.print("Volviendo al menu");
         System.out.print(".");
@@ -232,7 +233,7 @@ public class Menu {
      */
     public void editarVolante() throws InterruptedException {
         try {
-            System.out.print("Cargando");
+            System.out.print("\nCargando");
             System.out.print(".");
             Thread.sleep(1000);
             System.out.print(".");
@@ -249,12 +250,10 @@ public class Menu {
         String titulo = scanner.next();
         System.out.print("Introduzca la nueva descripción: ");
         String descripcion = scanner.next();
-        System.out.print("Introduzca la nueva cedula: ");
-        int codigo_empleado = scanner.nextInt();
 
         volanteDePago.editarVolante(titulo,descripcion,id_volante);
 
-        System.out.println("Volante cambiado");
+        System.out.println("\nVolante cambiado");
         Thread.sleep(1500);
         System.out.print("Volviendo al menu");
         System.out.print(".");
@@ -270,7 +269,7 @@ public class Menu {
      */
     public void mostrarVolante() throws InterruptedException {
         try {
-            System.out.print("Cargando");
+            System.out.print("\nCargando");
             System.out.print(".");
             Thread.sleep(1000);
             System.out.print(".");
@@ -281,13 +280,13 @@ public class Menu {
         } catch (Exception e) {
         }
 
-        System.out.println("Introduzca el número de volante a visualizar: ");
+        System.out.println("\nIntroduzca el número de volante a visualizar: ");
         int id_volante = scanner.nextInt();
 
-        volanteDePago.mostrarVolante(id_volante);
+        System.out.println(volanteDePago.mostrarVolante(id_volante));
 
-        System.out.println("Presiona \"Enter\" para volver: ");
-        String espera = scanner.next();
+        Thread.sleep(10000);
+
         System.out.print("Volviendo al menu");
         System.out.print(".");
         Thread.sleep(1000);
@@ -302,16 +301,16 @@ public class Menu {
      */
     public void menuPrincipal() throws IOException, InterruptedException, SQLException {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        System.out.println("BIENVENIDO AL GESTOR DE NÓMINA");
+        System.out.println("\nBIENVENIDO AL GESTOR DE NÓMINA");
         Thread.sleep(5000);
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         int opcion = 0;
         while(opcion!=8) {
-            System.out.println(".....:MENU:.....");
+            System.out.println("\n.....:MENU:.....");
             for (String i : opciones.keySet()) {
                 System.out.println(i + " - " + opciones.get(i));
             }
-            System.out.print("Ingrese el valor deseado: ");
+            System.out.print("Ingrese la opción deseada: ");
             opcion = scanner.nextInt();
             switch (opcion){
                 case 1:
@@ -336,6 +335,14 @@ public class Menu {
                     mostrarVolante();
                     break;
                 case 8:
+                    System.out.println("Gracias por usar el sistema - SALIENDO");
+                    Thread.sleep(1000);
+                    System.out.print(".");
+                    Thread.sleep(1000);
+                    System.out.print(".");
+                    Thread.sleep(1000);
+                    System.out.println(".");
+                    Thread.sleep(1000);
                     break;
                 default:
                     System.out.println("Favor seleccionar una de las opciones correctas");

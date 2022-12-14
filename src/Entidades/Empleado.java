@@ -66,7 +66,7 @@ public class Empleado {
      * @param codigo El parámetro es el código único del Empleado
      */
     public void eliminarEmpleado(int codigo) {
-        String stmt = "DELETE FROM empleados WHERE codigo = ?;"; //ps prepared statement, sentencia de base de datos en el que se elimina de la tabla empleados, el registro con el codigo introducido
+        String stmt = "DELETE FROM empleados WHERE codigo_empleado = ?;"; //ps prepared statement, sentencia de base de datos en el que se elimina de la tabla empleados, el registro con el codigo introducido
 
         try {
             PreparedStatement ps = conexion.conectar().prepareStatement(stmt); //conexion a la base de datos  y ejecucion de la sentencia sql
@@ -125,7 +125,7 @@ public class Empleado {
             ps.close();
 
         } catch(SQLException ex) {
-            System.out.println("Existe un cliente con ese codigo");
+            System.out.println("Existe un cliente con ese código");
 
         } finally {
 
@@ -149,8 +149,10 @@ public class Empleado {
             while(rs.next()){
                 System.out.println(rs.getString(1) + "  " + rs.getString(2) + " " +rs.getString(3) + "  " + rs.getString(4));
             }
+            rs.close();
+            st.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
+            System.err.println("Algo ha salido mal...");
 
         } finally {
 
@@ -163,9 +165,4 @@ public class Empleado {
             }
         }
     }// Cierre de metodo
-
-    public static void main(String[] args) {
-        Empleado empleado = new Empleado();
-        empleado.showAll();
-    }
 }// Cierre de Clase
