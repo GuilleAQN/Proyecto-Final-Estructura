@@ -11,4 +11,5 @@ import java.sql.SQLException;
 public interface EnumerarEmpleados {
 
     int contarEmpleados() throws SQLException;
+
 }// Cierre de la Interface

@@ -81,7 +81,6 @@ public class EmpleadoTiempoCompleto extends Empleado {
             System.err.println("Favor introducir credenciales correctamentes");
 
         } finally {
-
             try {
                 if (conexion != null) {
                     conexion.conectar().close();
@@ -91,4 +90,5 @@ public class EmpleadoTiempoCompleto extends Empleado {
             }
         }
     } // Cierre de metodo
+
 }// Cierre de Clase

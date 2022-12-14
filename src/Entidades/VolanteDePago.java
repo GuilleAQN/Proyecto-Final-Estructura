@@ -22,7 +22,6 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
 
     /**
      * Metodo que genera un Volante relacionado con el codigo un empleado.
-     *
      * @param titulo          Titulo que tendra el volante
      * @param descripcion     Cuerpo del Volante, compuesto por detalles, sueldo bruto y sus descuentos, ademas del del sueldo neto
      * @param codigo_empleado Código del empleado con el se relaciona
@@ -251,4 +250,5 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
     /**
      * @return Devuelve el valor de la cantidad de empleado registrados
      */
+
 }// Cierre de Clase

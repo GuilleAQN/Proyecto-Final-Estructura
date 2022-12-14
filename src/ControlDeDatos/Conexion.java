@@ -27,8 +27,9 @@ public class Conexion {
             System.out.println(e.getMessage());
         }
         return conectar;
-    }
+    }//Cierre de metodo
     /**
      * @return Devuelve la conexión la Base de Datos
      */
+
 }//Cierre de la clase

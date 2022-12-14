@@ -179,7 +179,7 @@ public class Menu {
         } catch (Exception e) {
         }
         System.out.println("\nCantidad de Empleados Registrados: " + volanteDePago.contarEmpleados());
-        empleado.showAll();
+        empleado.mostrarTodos();
 
         System.out.println("Presiona \"Enter\" para volver: ");
         Thread.sleep(5000);
@@ -350,4 +350,5 @@ public class Menu {
             }
         }
     }// Cierre de metodo
+
 }// Cierre de clase

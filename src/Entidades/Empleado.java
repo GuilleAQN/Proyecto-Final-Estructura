@@ -140,7 +140,10 @@ public class Empleado {
         }
     }// Cierre de metodo
 
-    public void showAll(){
+    /**
+     * Metodo que muestra el código, nombre, apellido y cédula de todos los empleados registrados
+     */
+    public void mostrarTodos(){
         try {
             Statement st = conexion.conectar().createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM empleados");
@@ -165,4 +168,5 @@ public class Empleado {
             }
         }
     }// Cierre de metodo
+
 }// Cierre de Clase

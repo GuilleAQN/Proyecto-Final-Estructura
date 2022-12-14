@@ -1,8 +1,14 @@
 package Interfaz;
 
+/**
+ * Clase con los metodos para entrar al sistema y confimar las credenciales del sistema
+ * @author Omar Aquino
+ * @since 11/12/2022
+ */
+
+//Interfaces Importadas
 import ControlDeDatos.Conexion;
 import Entidades.Empleado;
-
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,6 +23,11 @@ public class InicioDeSesion {
     Conexion conexion = new Conexion();
     Menu menu = new Menu();
 
+    /**
+     * Metodo que genera un Volante relacionado con el codigo un empleado.
+     * @param usuario        Nombre del usuario para acceder al sistema
+     * @param contraseña     Contraseña del usuario para acceder al sistema
+     */
     public boolean confirmarCredenciales(String usuario, String contraseña){
         String usuarioReal = "";
         String contraseñaReal = "";
@@ -48,11 +59,21 @@ public class InicioDeSesion {
             return true;
         }
         return false;
-    }
+    }//Cierre de metodo
+    /**
+     * @return Devuelve un valor booleano para confirmar si las credencias son las correctas
+     */
 
+    /**
+     * Metodo que sirve como menú de inicio de sesión y que llama al menu del sistema en caso de
+     * tener las credenciales correctas
+     */
     public void inicioDeSesion() throws SQLException, IOException, InterruptedException {
+
         boolean salir = true;
+
         while (salir) {
+
             System.out.print("\nInicio de Sesión\nIntroduzca las credenciales\nUSUARIO: ");
             String usuario = scanner.next();
             System.out.print("CONTRASEÑA: ");
@@ -69,10 +90,13 @@ public class InicioDeSesion {
                 Thread.sleep(1000);
                 salir = false;
                 menu.menuPrincipal();
+
             } else {
                 System.out.println("\nCredenciales incorrectas - FAVOR DIGITAR DE NUEVO");
                 Thread.sleep(3000);
+
             }
         }
-    }
-}
+    }//Cierre de metodo
+
+}//Cierre de clase
