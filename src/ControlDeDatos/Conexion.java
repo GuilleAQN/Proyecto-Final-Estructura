@@ -26,9 +26,8 @@ public class Conexion {
         catch (Exception e) { // En caso, de que no la Base de Datos, devuelve un mensaje
             System.out.println(e.getMessage());
         }
-        
         return conectar;
-    }
+    }//Cierre de metodo
     /**
      * @return Devuelve la conexión la Base de Datos
      */

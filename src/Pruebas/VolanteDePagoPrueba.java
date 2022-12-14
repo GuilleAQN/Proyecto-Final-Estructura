@@ -10,19 +10,19 @@ class VolanteDePagoPrueba {
 
     VolanteDePago volanteDePago = new VolanteDePago();
 
-    @Test //test 1
+    @Test //Test 1
     @DisplayName("Prueba de Cálculo de ISR (Impuesto sobre la Renta)")
     void prueba1() {
         Assertions.assertEquals(4427.55,volanteDePago.cálculoISR(65000));
     }
 
-    @Test //test 2
+    @Test //Test 2
     @DisplayName("Prueba de Cálculo de AFP (Aseguradora de Fondo de Pensiones)")
     void prueba2() {
         Assertions.assertEquals(1865.5,volanteDePago.cálculoAFP(65000));
     }
 
-    @Test //test 3
+    @Test //Test 3
     @DisplayName("Prueba de Cálculo de SRS (Servicio Regional de Salud)")
     void prueba3() {
         Assertions.assertEquals(1976,volanteDePago.cálculoSRS(65000));
