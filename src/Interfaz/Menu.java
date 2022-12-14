@@ -1,9 +1,15 @@
 package Interfaz;
 
+/**
+ * Clase con los métodos para acceder a los metodos de "Empleados" y "Volante".
+ * @author: Omar Aquino y Leandro Gonzalez
+ * @since: 04/12/2022
+ */
+
+// Interfaces Importadas
 import Entidades.Empleado;
 import Entidades.EmpleadoTiempoCompleto;
 import Entidades.VolanteDePago;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -15,7 +21,6 @@ public class Menu {
     Empleado empleado = new Empleado();
     EmpleadoTiempoCompleto empleadoTiempoCompleto = new EmpleadoTiempoCompleto();
     VolanteDePago volanteDePago = new VolanteDePago();
-
     Scanner scanner = new Scanner(System.in);
 
     Map<String, String> opciones = new HashMap<String, String>(){{
@@ -29,6 +34,9 @@ public class Menu {
         put("8","Finalizar Programa");
     }};
 
+    /**
+     * Metodo para introducir por terminal los datos de un nuevo empleado a la Base de Datos.
+     */
     public void introducirEmpleado() throws InterruptedException, SQLException {
         try {
             System.out.print("Cargando");
@@ -74,8 +82,11 @@ public class Menu {
         Thread.sleep(1000);
         System.out.println(".");
         Thread.sleep(1000);
-    }
+    }// Cierre de metodo
 
+    /**
+     * Metodo para eliminar por terminal los datos de un empleado en la Base de Datos.
+     */
     public void eliminarEmpleado() throws InterruptedException, SQLException {
         try {
             System.out.print("Cargando");
@@ -102,8 +113,11 @@ public class Menu {
         Thread.sleep(1000);
         System.out.println(".");
         Thread.sleep(1000);
-    }
+    }// Cierre de metodo
 
+    /**
+     * Metodo para editar por terminal los datos de un empleado de la Base de Datos.
+     */
     public void editarEmpleado() throws InterruptedException, SQLException {
         try {
             System.out.print("Cargando");
@@ -149,6 +163,9 @@ public class Menu {
         Thread.sleep(1000);
     }
 
+    /**
+     * Metodo para mostrar por terminal los datos de un empleado a la Base de Datos.
+     */
     public void mostrarEmpleados() throws InterruptedException{
         try {
             System.out.print("Cargando");
@@ -172,8 +189,11 @@ public class Menu {
         Thread.sleep(1000);
         System.out.println(".");
         Thread.sleep(1000);
-    }
-    
+    }// Cierre de metodo
+
+    /**
+     * Metodo para generar por terminal los datos de un nuevo volante a la Base de Datos.
+     */
     public void generarVolante() throws InterruptedException {
         try {
             System.out.print("Cargando");
@@ -205,8 +225,11 @@ public class Menu {
         Thread.sleep(1000);
         System.out.println(".");
         Thread.sleep(1000);
-    }
+    }// Cierre de metodo
 
+    /**
+     * Metodo para editar por terminal los datos de un volante en la Base de Datos.
+     */
     public void editarVolante() throws InterruptedException {
         try {
             System.out.print("Cargando");
@@ -240,8 +263,11 @@ public class Menu {
         Thread.sleep(1000);
         System.out.println(".");
         Thread.sleep(1000);
-    }
+    }// Cierre de metodo
 
+    /**
+     * Metodo para mostrar por terminal los datos de un volante de la Base de Datos.
+     */
     public void mostrarVolante() throws InterruptedException {
         try {
             System.out.print("Cargando");
@@ -269,8 +295,11 @@ public class Menu {
         Thread.sleep(1000);
         System.out.println(".");
         Thread.sleep(1000);
-    }
+    }// Cierre de metodo
 
+    /**
+     * Metodo para manejar por terminal los movimientos de los datos en la Base de Datos.
+     */
     public void menuPrincipal() throws IOException, InterruptedException, SQLException {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         System.out.println("BIENVENIDO AL GESTOR DE NÓMINA");
@@ -313,5 +342,5 @@ public class Menu {
                     break;
             }
         }
-    }
-}
+    }// Cierre de metodo
+}// Cierre de clase
