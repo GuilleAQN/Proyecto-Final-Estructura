@@ -80,7 +80,7 @@ public class InicioDeSesion {
             String contraseña = scanner.next();
 
             if (confirmarCredenciales(usuario, contraseña)) {
-                System.out.println("\nCredenciales correctas - ENTRANDO AL SISTEMA");
+                System.out.print("\nCredenciales correctas - ENTRANDO AL SISTEMA");
                 Thread.sleep(1000);
                 System.out.print(".");
                 Thread.sleep(1000);
