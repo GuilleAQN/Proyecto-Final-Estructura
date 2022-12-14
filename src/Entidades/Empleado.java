@@ -47,7 +47,7 @@ public class Empleado {
             ps.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
+            System.out.println("Este cliente ya existe");
 
         } finally {
             try {
@@ -76,8 +76,7 @@ public class Empleado {
             ps.close(); // cierre de la conexion en la base de datos
 
         } catch(SQLException ex) {
-
-            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
+            System.out.println("No existe un cliente un cliente");
 
         } finally {
 
@@ -126,8 +125,7 @@ public class Empleado {
             ps.close();
 
         } catch(SQLException ex) {
-
-            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
+            System.out.println("Existe un cliente con ese codigo");
 
         } finally {
 
@@ -147,8 +145,9 @@ public class Empleado {
             Statement st = conexion.conectar().createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM empleados");
 
+            System.out.println("Codigo  Nombre Completo   Cédula\n---------------------------------");
             while(rs.next()){
-                System.out.println(rs.getString(2) + " " +rs.getString(3));
+                System.out.println(rs.getString(1) + "  " + rs.getString(2) + " " +rs.getString(3) + "  " + rs.getString(4));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
@@ -164,4 +163,9 @@ public class Empleado {
             }
         }
     }// Cierre de metodo
+
+    public static void main(String[] args) {
+        Empleado empleado = new Empleado();
+        empleado.showAll();
+    }
 }// Cierre de Clase

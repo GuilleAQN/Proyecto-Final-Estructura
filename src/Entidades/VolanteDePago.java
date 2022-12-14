@@ -95,6 +95,7 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
      */
     public String mostrarVolante(int id_volante) {
         String resultado = "";
+        double salarioBruto = 0.0;
         double descuentoAFP = 0;
         double descuentoSRS = 0;
         double descuentoISR = 0;
@@ -108,17 +109,17 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
             int codigo_empleado = rs.getInt(4);
 
             resultado = "Nº de Volante: " + rs.getString(1) + "\nTitulo: " + rs.getString(2)
-                    + "\nDescripción: " + rs.getString(3) + "\nCódigo del Empleado: " + rs.getInt(4)
-                    + codigo_empleado + "\nFecha de Pago: " + rs.getString(5);
+                    + "\nDescripción: " + rs.getString(3) + "\nCódigo del Empleado: " +
+                    "\nFecha de Pago: " + rs.getString(5);
 
             rs.close();
             ps.close();
 
-            double salario_bruto = obtenerSalario(codigo_empleado);
+            salarioBruto = obtenerSalario(codigo_empleado);
 
-            descuentoAFP = cálculoAFP(salario_bruto);
-            descuentoSRS = cálculoSRS(salario_bruto);
-            descuentoISR = cálculoISR(salario_bruto);
+            descuentoAFP = cálculoAFP(salarioBruto);
+            descuentoSRS = cálculoSRS(salarioBruto);
+            descuentoISR = cálculoISR(salarioBruto);
             if(descuentoSRS == 0){
                 descuentoISR = Double.parseDouble("No aplica");
             }
@@ -137,7 +138,7 @@ public class VolanteDePago implements CálculoDescuentos, EnumerarEmpleados {
                 Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return resultado + "\nDescuentos\nAFP: " + descuentoAFP + "\nSRS: " + descuentoSRS + "\nISR: " + descuentoISR;
+        return resultado + "\nSalario: " + salarioBruto + "\nDescuentos\nAFP: " + descuentoAFP + "\nSRS: " + descuentoSRS + "\nISR: " + descuentoISR;
     }// Cierre de metodo
 
     /**
