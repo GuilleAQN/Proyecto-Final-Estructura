@@ -28,7 +28,7 @@ public class Empleado {
      * @param direccion El parámetro es la dirección del Empleado
      * @param salarioBruto El parámetro es el salario bruto del Empleado
      */
-    public void ingresarEmpleado(int codigo, String nombre, String apellido, String cedula, String direccion, double salarioBruto) throws SQLException {
+    public void ingresarEmpleado(int codigo, String nombre, String apellido, String cedula, String direccion, double salarioBruto) {
 
         String stmt = "INSERT INTO empleados (codigo_empleado ,nombre ,apellido ,cedula ,direccion ,rol ,salario_bruto) VALUES(?,?,?,?,?,?,?);";
 
@@ -102,7 +102,7 @@ public class Empleado {
      * @param rol El parámetro es el rol que desempeña el empleado que puede ser: Medio Tiempo o Tiempo Completo
      * @param salarioBruto El parámetro es el salario bruto del Empleado
      */
-    public void editarEmpleado(int codigo, String nombre, String apellido, String cedula, String direccion, String rol, double salarioBruto) throws SQLException {
+    public void editarEmpleado(int codigo, String nombre, String apellido, String cedula, String direccion, String rol, double salarioBruto) {
         String stmt = "UPDATE empleados SET nombre = ?, apellido = ?, cedula = ?, direccion = ?, rol = ?, estado = ?,salario_bruto = ? WHERE codigo_empleado = ?;"; //ps prepared statement, sentencia de base de datos en el que se edita de la tabla empleados, el registro con el codigo introducido
         
         try {
@@ -139,6 +139,7 @@ public class Empleado {
             }
         }
     }// Cierre de metodo
+
 
     /**
      * Metodo que muestra el código, nombre, apellido y cédula de todos los empleados registrados
