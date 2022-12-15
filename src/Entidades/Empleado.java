@@ -179,6 +179,7 @@ public class Empleado {
 
             PreparedStatement ps = conexion.conectar().prepareStatement(stmt);
             ps.setInt(1,codigo);
+            System.out.println(ps.getString(1) + "  " + ps.getString(2) + " " +ps.getString(3) + "  " + ps.getString(4));
             ps.close();
         } catch (SQLException ex){
 
