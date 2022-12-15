@@ -170,4 +170,42 @@ public class Empleado {
         }
     }// Cierre de metodo
 
+<<<<<<< HEAD
+    public static void consultar(int codigo){
+        Conexion conexion = new Conexion();
+
+        String stmt = "SELECT * FROM empleados WHERE codigo =?;"; 
+
+        try {
+
+            PreparedStatement ps = conexion.conectar().prepareStatement(stmt);
+            ps.setInt(1,codigo);
+            ps.close();
+        } catch (SQLException ex){
+
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
+
+        } finally {
+
+            try {
+
+                if (conexion != null) {
+                    conexion.conectar().close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
+
+            }
+        }
+
+
+    public static void main(String[] args) throws SQLException { // Prueba
+        Empleado empleado = new Empleado();
+        empleado.ingresarEmpleado(12121,"Juan","Carrion","000000","Un lugar",17000);
+    }
+=======
+>>>>>>> 2c257aad0055052957db98f6836d065847921fd6
 }// Cierre de Clase
+}
