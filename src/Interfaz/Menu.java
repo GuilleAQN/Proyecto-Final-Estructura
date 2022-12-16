@@ -260,6 +260,9 @@ public class Menu {
     }// Cierre de metodo
 
 
+    /**
+     * Metodo para imprimir por terminal una especie de carga entre metodos
+     */
     public void carga() {
         try {
             System.out.print("\nCargando");
