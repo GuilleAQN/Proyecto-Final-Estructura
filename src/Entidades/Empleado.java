@@ -170,44 +170,42 @@ public class Empleado {
         }
     }// Cierre de metodo
 
-<<<<<<< HEAD
-    public static void consultar(int codigo){
-        Conexion conexion = new Conexion();
 
-        String stmt = "SELECT * FROM empleados WHERE codigo =?;"; 
+    /**
+     * Metodo que enseña el código, nombre, apellido, cédula, salario y fecha de inicio
+     * de labores de un empleado.
+     * @param codigo El parámetro es el código único del Empleado
+     */
+    public void consultarEmpleado(int codigo){
+        String stmt = "SELECT * FROM empleados WHERE codigo_empleado = " + codigo;
 
         try {
+            Statement ps = conexion.conectar().createStatement();
+            ResultSet rs = ps.executeQuery(stmt);
 
-            PreparedStatement ps = conexion.conectar().prepareStatement(stmt);
-            ps.setInt(1,codigo);
-            System.out.println(ps.getString(1) + "  " + ps.getString(2) + " " +ps.getString(3) + "  " + ps.getString(4));
+            System.out.println("\nEMPLEADO\nCódigo: " +
+            rs.getString(1) + "\nNombre: " + rs.getString(2) +
+            "\nApellido: " + rs.getString(3) + "\nCédula: " + rs.getString(4)
+            + "\nSalario: RD$" + rs.getInt(8) + "\nFecha de Inicio de Labores: " + rs.getString(9));
+
+            rs.close();
             ps.close();
-        } catch (SQLException ex){
 
-            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
+        } catch (SQLException ex){
+            System.err.println("No existe un empleado con este código");
 
         } finally {
 
             try {
-
                 if (conexion != null) {
                     conexion.conectar().close();
                 }
-
             } catch (SQLException ex) {
 
                 Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE,null,ex);
 
             }
         }
-    }
+    }//Cierre de metodo
 
-
-    public static void main(String[] args) throws SQLException { // Prueba
-        Empleado empleado = new Empleado();
-        empleado.ingresarEmpleado(12121,"Juan","Carrion","000000","Un lugar",17000);
-    }
-=======
->>>>>>> 2c257aad0055052957db98f6836d065847921fd6
 }// Cierre de Clase
-}

@@ -23,32 +23,25 @@ public class Menu {
     VolanteDePago volanteDePago = new VolanteDePago();
     Scanner scanner = new Scanner(System.in);
 
-    Map<String, String> opciones = new HashMap<String, String>(){{
-        put("1","Introducir Empleado");
-        put("2","Eliminar Empleado");
-        put("3","Modificar Empleado");
-        put("4","Mostrar Empleados");
-        put("5","Generar Volante");
-        put("6","Editar Volante");
-        put("7","Mostrar Volante");
-        put("8","Finalizar Programa");
+    Map<String, String> opciones = new HashMap<>() {{
+        put("1", "Introducir Empleado");
+        put("2", "Eliminar Empleado");
+        put("3", "Modificar Empleado");
+        put("4", "Mostrar Empleado");
+        put("5", "Mostrar Todos los empleados");
+        put("6", "Generar Volante");
+        put("7", "Editar Volante");
+        put("8", "Mostrar Volante");
+        put("9", "Finalizar Programa");
     }};
+
 
     /**
      * Metodo para introducir por terminal los datos de un nuevo empleado a la Base de Datos.
      */
     public void introducirEmpleado() throws InterruptedException, SQLException {
-        try {
-            System.out.print("Cargando");
-            System.out.print(".");
-            Thread.sleep(1000);
-            System.out.print(".");
-            Thread.sleep(1000);
-            System.out.println(".");
-            Thread.sleep(1000);
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } catch (Exception e) {
-        }
+        carga();
+
         int estado = 0;
         System.out.print("Nuevo Empleado\nIntroduzca el codigo: ");
         int codigo_empleado = scanner.nextInt();
@@ -73,6 +66,7 @@ public class Menu {
         }if (rol.equals("2")){
             empleadoTiempoCompleto.ingresarEmpleadoTiempoCompleto(codigo_empleado,nombre,apellido,cedula,direccion,estado,salarioBruto);
         }
+
         System.out.println("Entrada Exitosa!");
         Thread.sleep(1500);
         System.out.print("Volviendo al menu");
@@ -84,22 +78,13 @@ public class Menu {
         Thread.sleep(1000);
     }// Cierre de metodo
 
+
     /**
      * Metodo para eliminar por terminal los datos de un empleado en la Base de Datos.
      */
-    public void eliminarEmpleado() throws InterruptedException, SQLException {
-        try {
-            System.out.print("Cargando");
-            System.out.print(".");
-            Thread.sleep(1000);
-            System.out.print(".");
-            Thread.sleep(1000);
-            System.out.println(".");
-            Thread.sleep(1000);
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } catch (Exception e) {
-        }
-        int estado = 0;
+    public void eliminarEmpleado() throws InterruptedException{
+        carga();
+
         System.out.print("Empleado\nIntroduzca el codigo del empleado a eliminar: ");
         int codigo_empleado = scanner.nextInt();
         empleado.eliminarEmpleado(codigo_empleado);
@@ -115,21 +100,13 @@ public class Menu {
         Thread.sleep(1000);
     }// Cierre de metodo
 
+
     /**
      * Metodo para editar por terminal los datos de un empleado de la Base de Datos.
      */
     public void editarEmpleado() throws InterruptedException, SQLException {
-        try {
-            System.out.print("Cargando");
-            System.out.print(".");
-            Thread.sleep(1000);
-            System.out.print(".");
-            Thread.sleep(1000);
-            System.out.println(".");
-            Thread.sleep(1000);
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } catch (Exception e) {
-        }
+        carga();
+
         int estado = 0;
         System.out.print("Empleado a Editar\nIntroduzca el codigo del empleado: ");
         int codigo_empleado = scanner.nextInt();
@@ -153,6 +130,7 @@ public class Menu {
         }else{
             empleadoTiempoCompleto.editarEmpleadoTiempoCompleto(codigo_empleado,nombre,apellido,cedula,direccion,estado,salarioBruto);
         }
+
         System.out.println("Cambio Exitoso!");
         System.out.print("Volviendo al menu");
         System.out.print(".");
@@ -163,25 +141,17 @@ public class Menu {
         Thread.sleep(1000);
     }//Cierre de metodo
 
-    /**
-     * Metodo para mostrar por terminal los datos de un empleado a la Base de Datos.
-     */
-    public void mostrarEmpleados() throws InterruptedException, SQLException {
-        try {
-            System.out.print("Cargando");
-            System.out.print(".");
-            Thread.sleep(1000);
-            System.out.print(".");
-            Thread.sleep(1000);
-            System.out.println(".");
-            Thread.sleep(1000);
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } catch (Exception e) {
-        }
-        System.out.println("\nCantidad de Empleados Registrados: " + volanteDePago.contarEmpleados());
-        empleado.mostrarTodos();
 
-        System.out.println("Presiona \"Enter\" para volver: ");
+    /**
+     * Metodo para mostrar por terminal los datos mas importantes de un empleado de la Base de Datos.
+     */
+    public void mostrarEmpleado() throws InterruptedException {
+        carga();
+
+        System.out.print("\nIntroduzca el código del empleado: ");
+        int codigo = scanner.nextInt();
+        empleado.consultarEmpleado(codigo);
+
         Thread.sleep(5000);
         System.out.print("Volviendo al menu");
         System.out.print(".");
@@ -192,21 +162,32 @@ public class Menu {
         Thread.sleep(1000);
     }// Cierre de metodo
 
+
+    /**
+     * Metodo para mostrar por terminal los datos mas importantes de todos los empleados de la Base de Datos.
+     */
+    public void mostrarTodos() throws InterruptedException, SQLException {
+        carga();
+
+        System.out.println("\nCantidad de Empleados Registrados: " + volanteDePago.contarEmpleados());
+        empleado.mostrarTodos();
+
+        Thread.sleep(5000);
+        System.out.print("Volviendo al menu");
+        System.out.print(".");
+        Thread.sleep(1000);
+        System.out.print(".");
+        Thread.sleep(1000);
+        System.out.println(".");
+        Thread.sleep(1000);
+    }// Cierre de metodo
+
+
     /**
      * Metodo para generar por terminal los datos de un nuevo volante a la Base de Datos.
      */
     public void generarVolante() throws InterruptedException {
-        try {
-            System.out.print("Cargando");
-            System.out.print(".");
-            Thread.sleep(1000);
-            System.out.print(".");
-            Thread.sleep(1000);
-            System.out.println(".");
-            Thread.sleep(1000);
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } catch (Exception e) {
-        }
+        carga();
 
         System.out.print("Nuevo Volante\nIntroduzca el titulo: ");
         String titulo = scanner.next();
@@ -228,21 +209,12 @@ public class Menu {
         Thread.sleep(1000);
     }// Cierre de metodo
 
+
     /**
      * Metodo para editar por terminal los datos de un volante en la Base de Datos.
      */
     public void editarVolante() throws InterruptedException {
-        try {
-            System.out.print("\nCargando");
-            System.out.print(".");
-            Thread.sleep(1000);
-            System.out.print(".");
-            Thread.sleep(1000);
-            System.out.println(".");
-            Thread.sleep(1000);
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } catch (Exception e) {
-        }
+        carga();
 
         System.out.println("Introduzca su número de volante: ");
         int id_volante = scanner.nextInt();
@@ -264,21 +236,12 @@ public class Menu {
         Thread.sleep(1000);
     }// Cierre de metodo
 
+
     /**
      * Metodo para mostrar por terminal los datos de un volante de la Base de Datos.
      */
     public void mostrarVolante() throws InterruptedException {
-        try {
-            System.out.print("\nCargando");
-            System.out.print(".");
-            Thread.sleep(1000);
-            System.out.print(".");
-            Thread.sleep(1000);
-            System.out.println(".");
-            Thread.sleep(1000);
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } catch (Exception e) {
-        }
+       carga();
 
         System.out.println("\nIntroduzca el número de volante a visualizar: ");
         int id_volante = scanner.nextInt();
@@ -296,6 +259,22 @@ public class Menu {
         Thread.sleep(1000);
     }// Cierre de metodo
 
+
+    public void carga() {
+        try {
+            System.out.print("\nCargando");
+            System.out.print(".");
+            Thread.sleep(1000);
+            System.out.print(".");
+            Thread.sleep(1000);
+            System.out.println(".");
+            Thread.sleep(1000);
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        } catch (Exception e) {
+        }
+    }// Cierre de metodo
+
+
     /**
      * Metodo para manejar por terminal los movimientos de los datos en la Base de Datos.
      */
@@ -305,7 +284,7 @@ public class Menu {
         Thread.sleep(5000);
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         int opcion = 0;
-        while(opcion!=8) {
+        while(opcion!=9) {
             System.out.println("\n.....:MENU:.....");
             for (String i : opciones.keySet()) {
                 System.out.println(i + " - " + opciones.get(i));
@@ -323,18 +302,21 @@ public class Menu {
                     editarEmpleado();
                     break;
                 case 4:
-                    mostrarEmpleados();
+                    mostrarEmpleado();
                     break;
                 case 5:
-                    generarVolante();
+                    mostrarTodos();
                     break;
                 case 6:
-                    editarVolante();
+                    generarVolante();
                     break;
                 case 7:
-                    mostrarVolante();
+                    editarVolante();
                     break;
                 case 8:
+                    mostrarVolante();
+                    break;
+                case 9:
                     System.out.print("Gracias por usar el sistema - SALIENDO");
                     Thread.sleep(1000);
                     System.out.print(".");
